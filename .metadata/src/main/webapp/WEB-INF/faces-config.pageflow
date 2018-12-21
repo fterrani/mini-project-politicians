@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14141592409490" configfile="/mini-project-politicians/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="listParties.xhtml" x="84" y="300" id="pf15446048601170" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15446048601171 pf15449637722840" path="/listParties.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="partyDetails.xhtml" x="288" y="132" id="pf15446048601182" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15446048601171" path="/partyDetails.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="editAddress.xhtml" x="540" y="288" id="pf15446048601183" path="/editAddress.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="budgetFundingResult.xhtml" x="672" y="108" id="pf15446048601184" path="/budgetFundingResult.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="budgetFunding.xhtml" x="465" y="144" id="pf15446048601185" path="/budgetFunding.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="populateResult.xhtml" x="96" y="62" id="pf15449637722841" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf15449637722840" path="/populateResult.xhtml"/>
+  <links id="pf15446048601171" target="pf15446048601182" source="pf15446048601170"/>
+  <links id="pf15449637722840" target="pf15449637722841" source="pf15446048601170" outcome="#{politicsBean.populateDB}"/>
+</pageflow:Pageflow>
