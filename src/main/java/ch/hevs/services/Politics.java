@@ -12,5 +12,6 @@ public interface Politics
 {
 	List<Party> getParties();
 	Politician getPoliticianById( long id );
+	Party getPartyById( long id );
 	void removeParty(Party party);
 }

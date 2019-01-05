@@ -7,14 +7,18 @@
     xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	
+	<ui:define name="title">Budget funding</ui:define>
+	
     <ui:define name="content">
-        <h:outputLabel value="Transfer result:"></h:outputLabel><h:outputLabel value=" #{transferBean.transactionResult}"></h:outputLabel>
-        <br></br>
-        <h:form>
-        <h:commandLink action="transferForm">
-         <h:outputText value="Make another transfer" />
-        </h:commandLink>
-        </h:form>
+    	<p>
+    		This page should display the details for party number...
+        	<h:outputText value="#{politicsManagedBean.party.id}" />
+        </p>
+        
+        <p>Party name: <h:outputText value="#{politicsManagedBean.party.name}" /></p>
+        <p>Remaining budget: <h:outputText value="#{politicsManagedBean.party.remainingBudget}" /></p>
+
     </ui:define>
 </ui:composition>
 </html>

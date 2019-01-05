@@ -41,6 +41,15 @@ public class PoliticsBean implements Politics {
 	}
 
 	@Override
+	public Party getPartyById(long id)
+	{
+		Query query = em.createQuery("FROM Party p WHERE p.id = :id");
+		query.setParameter("id", id);
+		
+		return (Party) query.getSingleResult();
+	}
+
+	@Override
 	public void removeParty(Party party)
 	{
 		party = em.merge(party);

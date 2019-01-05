@@ -2,32 +2,46 @@
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-<head>
-  <title><ui:insert name="title">Default title</ui:insert></title>
-</head>
-
-<body>
-<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
-
-<div id="header">
-    <ui:insert name="header">
-    	<ui:include src="header.xhtml"/>
-    </ui:insert>
-</div>
-
-
-<div id="content">
-  <ui:insert name="content">
-    	<ui:include src="content.xhtml"/>  
-  </ui:insert>
-</div>
-
-<div id="footer">
-  <ui:insert name="footer">
-		<ui:include src="footer.xhtml"/>
-  </ui:insert>
-</div>
-
-</body>
-
+	<head>
+	
+		<title>
+			Politics Manager - <ui:insert name="title"/>
+		</title>
+	
+	
+		<style type="text/css">
+			body
+			{
+				font-family: sans-serif;
+				color: #333;
+			}
+			
+			.titleDiv
+			{
+				width:100%;
+				font-size: 2em;
+				line-height: 1.2;
+				background-color: navy;
+				color: white
+			}
+		</style>
+	  
+	</head>
+	
+	<body>
+		<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+		
+		<div id="header">
+		  <ui:include src="header.xhtml" />
+		</div>		
+		
+		<div id="content">
+		  <ui:insert name="content"/>
+		</div>
+		
+		<div id="footer">
+		  <ui:include src="footer.xhtml"/>
+		</div>
+	
+	</body>
 </html>

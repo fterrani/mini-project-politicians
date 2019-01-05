@@ -7,34 +7,43 @@
     xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	
+	<ui:define name="title">Party details</ui:define>
+	
     <ui:define name="content">
-    	<h:form>
-        	<h:outputLabel value="Transfer Information:"></h:outputLabel>
-        	<br></br>
-        	<h:panelGrid columns="5">
-        		<h:outputText value="source: "></h:outputText>
-        		<h:outputText value="client: "></h:outputText>
-	        	<h:selectOneMenu value="#{transferBean.sourceClientName}" valueChangeListener="#{transferBean.updateSourceAccounts}" onchange="submit()">
-	        		<f:selectItems value="#{transferBean.clientNames}"/>
-	        	</h:selectOneMenu>
-	        	<h:outputText value="account: "></h:outputText>
-	        	<h:selectOneMenu value="#{transferBean.sourceAccountDescription}">
-	        		<f:selectItems value="#{transferBean.sourceAccountDescriptions}"/>
-	        	</h:selectOneMenu>
-	        	<h:outputText value="destination: "></h:outputText>
-        		<h:outputText value="client: "></h:outputText>
-	        	<h:selectOneMenu value="#{transferBean.destinationClientName}" valueChangeListener="#{transferBean.updateDestinationAccounts}" onchange="submit()">
-	        		<f:selectItems value="#{transferBean.clientNames}"/>
-	        	</h:selectOneMenu>
-	        	<h:outputText value="account: "></h:outputText>
-	        	<h:selectOneMenu value="#{transferBean.destinationAccountDescription}">
-	        		<f:selectItems value="#{transferBean.destinationAccountDescriptions}"/>
-	        	</h:selectOneMenu>
-	        	<h:outputText value="amount:"></h:outputText>
-                <h:inputText value="#{transferBean.transactionAmount}" maxlength="6" style="width: 40px;"></h:inputText>
-        	</h:panelGrid>
-     		<h:commandButton value="transfer" action="#{transferBean.performTransfer}"></h:commandButton>
-        </h:form>
+	
+	    <h:form>
+			<h:commandLink action="withdrawFromBudget">
+				<h:outputText value="Withdraw from the budget" />
+			</h:commandLink>
+	    </h:form>
+    	
+    	<h1><h:outputText value="#{politicsManagedBean.party.name}" /></h1>
+    	
+    	<h:dataTable value="#{politicsManagedBean.party.politicians}" var="politician">
+        	<h:column>
+        		<f:facet name="header">First name</f:facet>
+        		#{politician.firstname}
+        	</h:column>
+        	<h:column>
+        		<f:facet name="header">Last name</f:facet>
+        		#{politician.lastname}
+        	</h:column>
+        	<h:column>
+        		<f:facet name="header">Mandates</f:facet>
+        		<ui:repeat var="#{politician.mandates}" value="mandate" varStatus="loop">
+        			#{mandate.name}
+        			<h:outputText rendered="#{!loop.last}">, </h:outputText>
+        		</ui:repeat>
+        	</h:column>
+        	<h:column>
+        		<f:facet name="header">Address</f:facet>
+        		#{politician.contactinfo.street}
+        		<br />#{politician.contactinfo.postcode} #{politician.contactinfo.locality}
+        		<br />#{politician.contactinfo.email}
+				<br />#{politician.contactinfo.phone}
+        	</h:column>
+		</h:dataTable>
     </ui:define>
 </ui:composition>
 </html>

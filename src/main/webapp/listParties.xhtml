@@ -7,29 +7,36 @@
     xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+    <ui:define name="title">List of all parties</ui:define>
     <ui:define name="content">
-        <h:outputLabel value="Welcome to Geneva Bank"></h:outputLabel>
-        <br></br>
-        
         
         <h:form>
-        <h:commandLink action="#{politicsBean.populateDB}">
-         <h:outputText value="Let's populate that DB!" />
-        </h:commandLink>
+        	<h:commandButton action="#{politicsManagedBean.populateDB}" value="Let's populate that DB!" />
         </h:form>
-
-        <h:dataTable value="#{politicsBean.parties}" var="party">
+        
+        <h:form>
+	        <h:commandLink action="budgetFunding">
+	        	<h:outputText value="Test budget funding" />
+	        	<f:setPropertyActionListener target="#{politicsManagedBean.partyId}" value="3" />
+	        </h:commandLink>
+        </h:form>
+        
+        <h:dataTable value="#{politicsManagedBean.parties}" var="party">
         	<h:column>
         		<f:facet name="header">Party name</f:facet>
         		#{party.name}
         	</h:column>
+        	<h:column>
+        		<f:facet name="header">See details</f:facet>
+        		<h:form>
+			        <h:commandLink action="#{politicsManagedBean.seePartyDetails}">
+			        	<h:outputText value="See details" />
+			        	<f:setPropertyActionListener target="#{politicsManagedBean.party}" value="#{party}" />
+			        </h:commandLink>
+        		</h:form>
+        	</h:column>
 		</h:dataTable>
-
-        <h:form>
-        <h:commandLink action="transferForm">
-         <h:outputText value="Start new transfer" />
-        </h:commandLink>
-        </h:form>
+		
     </ui:define>
 </ui:composition>
 </html>

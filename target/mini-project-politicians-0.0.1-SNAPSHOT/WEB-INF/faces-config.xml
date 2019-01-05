@@ -4,25 +4,51 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
+    
 	<managed-bean>
-		<managed-bean-name>politicsBean</managed-bean-name>
+		<managed-bean-name>politicsManagedBean</managed-bean-name>
 		<managed-bean-class>ch.hevs.managedbeans.PoliticsManagedBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	
 	<navigation-rule>
 		<display-name>listParties.xhtml</display-name>
 		<from-view-id>/listParties.xhtml</from-view-id>
 		<navigation-case>
+			<from-outcome>showPartyDetails</from-outcome>
 			<to-view-id>/partyDetails.xhtml</to-view-id>
 		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>listParties.xhtml</display-name>
-		<from-view-id>/listParties.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>#{politicsBean.populate.populate}</from-outcome>
+			<from-outcome>dbPopulated</from-outcome>
 			<to-view-id>/populateResult.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
+	
+	<navigation-rule>
+		<display-name>partyDetails.xhtml</display-name>
+		<from-view-id>/partyDetails.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>editAddress</from-outcome>
+			<to-view-id>/editAddress.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>partyDetails.xhtml</display-name>
+		<from-view-id>/partyDetails.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>withdrawFromBudget</from-outcome>
+			<to-view-id>/budgetFunding.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>budgetFunding.xhtml</display-name>
+		<from-view-id>/budgetFunding.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>withdrawAmount</from-outcome>
+			<to-view-id>/budgetFundingResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 </faces-config>
