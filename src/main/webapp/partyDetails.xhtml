@@ -20,7 +20,7 @@
     	<p><b>Total politicians:</b> <h:outputText value="#{politicsManagedBean.party.totalPoliticians}" /></p>
     	
     	<ui:fragment rendered="#{politicsManagedBean.canSeeBudget}">
-    		<p><b>Remaining budget:</b> <h:outputText value="#{politicsManagedBean.party.totalMembers}" /></p>
+    		<p><b>Remaining budget:</b> <h:outputText value="#{politicsManagedBean.party.remainingBudget}" /></p>
     	</ui:fragment>
     	
     	
@@ -66,6 +66,13 @@
 				</h:form>
         	</h:column>
 		</h:dataTable>
+		
+		<h:form>
+	        <h:commandLink action="back">
+	        	<h:outputText value="Go back to party list" />
+	        </h:commandLink>
+        </h:form>
+        
     </ui:define>
 </ui:composition>
 </html>

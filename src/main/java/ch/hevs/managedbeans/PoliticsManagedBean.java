@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -37,6 +38,8 @@ public class PoliticsManagedBean
     private boolean canSeeBudget;
     private int amount;
     
+
+    
     @PostConstruct
     public void initialize() throws NamingException
     {
@@ -45,6 +48,8 @@ public class PoliticsManagedBean
     	populate = (Populate) ctx.lookup("java:global/mini-project-politicians-0.0.1-SNAPSHOT/PopulateBean!ch.hevs.services.Populate");
     	budgetFunding = (BudgetFunding) ctx.lookup("java:global/mini-project-politicians-0.0.1-SNAPSHOT/BudgetFundingBean!ch.hevs.services.BudgetFunding");
     	politics = (Politics) ctx.lookup("java:global/mini-project-politicians-0.0.1-SNAPSHOT/PoliticsBean!ch.hevs.services.Politics");
+    	
+    	parties = politics.getParties();
     	
     	setCanAccessBudgetForm(budgetFunding.canAccessBudgetForm());
     	setCanSeeBudget(budgetFunding.canSeeBudget());
@@ -158,9 +163,15 @@ public class PoliticsManagedBean
 	
 	public String withdrawFromBudget()
 	{
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> amount: " + amount );
+		
 		try
 		{
 			budgetFunding.withdrawFromBudget(party, amount);
+			message = amount + " CHF were withdrawn from " + party.getName() + "'s budget.";
+			
+			// TODO Refresh Party entity?
+			
 			return "withdrawBudgetSuccess";
 		}
 		catch (Exception e)
@@ -187,5 +198,29 @@ public class PoliticsManagedBean
 	public void setCanAccessBudgetForm(boolean canAccessBudgetForm)
 	{
 		this.canAccessBudgetForm = canAccessBudgetForm;
+	}
+
+	public int getAmount()
+	{
+		return amount;
+	}
+
+	public void setAmount(int amount)
+	{
+		this.amount = amount;
+	}
+
+	public void setAmount(ValueChangeEvent event)
+	{
+		Object value = event.getNewValue();
+		
+		System.out.println( ">>>>>>> value for amount: " + value );
+		
+		try
+		{
+			amount = Integer.parseInt( value.toString() );
+		}
+		catch(Exception e)
+		{}
 	}
 }

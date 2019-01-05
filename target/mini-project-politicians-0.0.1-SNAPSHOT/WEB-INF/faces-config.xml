@@ -37,6 +37,15 @@
 	</navigation-rule>
 	
 	<navigation-rule>
+		<display-name>editAddress.xhtml</display-name>
+		<from-view-id>/editAddress.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>back</from-outcome>
+			<to-view-id>/partyDetails.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
 		<display-name>partyDetails.xhtml</display-name>
 		<from-view-id>/partyDetails.xhtml</from-view-id>
 		<navigation-case>
@@ -47,13 +56,21 @@
 			<from-outcome>editAddress</from-outcome>
 			<to-view-id>/editAddress.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>back</from-outcome>
+			<to-view-id>/listParties.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>
 		<display-name>budgetFunding.xhtml</display-name>
 		<from-view-id>/budgetFunding.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>withdrawAmount</from-outcome>
+			<from-outcome>withdrawBudgetSuccess</from-outcome>
+			<to-view-id>/budgetFundingResult.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>withdrawBudgetFailure</from-outcome>
 			<to-view-id>/budgetFundingResult.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>

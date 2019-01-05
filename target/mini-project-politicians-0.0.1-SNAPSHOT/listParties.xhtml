@@ -15,13 +15,6 @@
         	<h:commandButton action="#{politicsManagedBean.populateDB}" value="Let's populate that DB!" />
         </h:form>
         
-        <h:form>
-	        <h:commandLink action="budgetFunding">
-	        	<h:outputText value="Test budget funding" />
-	        	<f:setPropertyActionListener target="#{politicsManagedBean.partyId}" value="3" />
-	        </h:commandLink>
-        </h:form>
-        
         <h:dataTable value="#{politicsManagedBean.parties}" var="party">
         	<h:column>
         		<f:facet name="header">Party name</f:facet>

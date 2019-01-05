@@ -30,8 +30,15 @@
         <br />
         <br />
         <h:commandButton action="#{politicsManagedBean.saveAddress}" value="Save address" />
-      </h:form>
         
+		<br />
+		<br />
+		<br />
+		<h:commandLink action="back">
+			<h:outputText value="Go back to #{party.name} details" />
+		</h:commandLink>
+      </h:form>
+      
     </ui:define>
 </ui:composition>
 </html>

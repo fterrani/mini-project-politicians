@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14141592409490" configfile="/mini-project-politicians/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="listParties.xhtml" x="96" y="324" id="pf15446048601170" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf15446048601171 pf15465304218624 pf15466781484941" inlinks="pf15466782802014" path="/listParties.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="partyDetails.xhtml" x="312" y="324" id="pf15446048601182" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15466781484943 pf15466840943116" inlinks="pf15446048601171" path="/partyDetails.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="budgetFundingResult.xhtml" x="984" y="132" id="pf15446048601184" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf15465091690511" path="/budgetFundingResult.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="budgetFunding.xhtml" x="612" y="132" id="pf15446048601185" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15465091690511" inlinks="pf15466781484943" path="/budgetFunding.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="populateResult.xhtml" id="pf15465304218625" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf15465304218624 pf15466781484941" path="/populateResult.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="populateResult.xhtml" id="pf15466782802015" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15466782802014" path="/*"/>
-  <nodes xsi:type="pageflow:PFPage" name="editAddress.xhtml" id="pf15466840943117" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" inlinks="pf15466840943116" path="/editAddress.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listParties.xhtml" x="554" y="369" id="pf15446048601170" referenceLink="//@navigationRule.3/@navigationCase.2/@toViewId|" outlinks="pf15446048601171 pf15465304218624 pf15466781484941" inlinks="pf15466782802014 pf15467020171449" path="/listParties.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="partyDetails.xhtml" x="338" y="562" id="pf15446048601182" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15466781484943 pf15466840943116 pf15467020171449" inlinks="pf15446048601171 pf15466970322168" path="/partyDetails.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="budgetFundingResult.xhtml" x="770" y="753" id="pf15446048601184" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf15465091690511" path="/budgetFundingResult.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="budgetFunding.xhtml" x="554" y="753" id="pf15446048601185" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf15465091690511" inlinks="pf15466781484943" path="/budgetFunding.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="populateResult.xhtml" x="770" y="369" id="pf15465304218625" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf15465304218624 pf15466781484941" path="/populateResult.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="populateResult.xhtml" x="338" y="178" id="pf15466782802015" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15466782802014" path="/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="editAddress.xhtml" x="122" y="562" id="pf15466840943117" referenceLink="//@navigationRule.3/@navigationCase.1/@toViewId|" outlinks="pf15466970322168" inlinks="pf15466840943116" path="/editAddress.xhtml"/>
   <links id="pf15446048601171" target="pf15446048601182" source="pf15446048601170" outcome="showPartyDetails"/>
-  <links id="pf15465091690511" target="pf15446048601184" source="pf15446048601185" outcome="withdrawAmount"/>
+  <links id="pf15465091690511" target="pf15446048601184" source="pf15446048601185" outcome="withdrawBudgetSuccess"/>
   <links id="pf15465304218624" target="pf15465304218625" source="pf15446048601170" outcome="populateSuccess">
     <bendPoints d1Width="15" d1Height="-200" d2Width="92" d2Height="124"/>
   </links>
@@ -20,4 +20,6 @@
     <bendPoints d1Width="-29" d1Height="251" d2Width="-106" d2Height="-73"/>
   </links>
   <links id="pf15466840943116" target="pf15466840943117" source="pf15446048601182" outcome="editAddress"/>
+  <links id="pf15466970322168" target="pf15446048601182" source="pf15466840943117" outcome="back"/>
+  <links id="pf15467020171449" target="pf15446048601170" source="pf15446048601182" outcome="back"/>
 </pageflow:Pageflow>

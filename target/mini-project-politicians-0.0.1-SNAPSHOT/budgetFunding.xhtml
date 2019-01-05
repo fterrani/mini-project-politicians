@@ -11,13 +11,21 @@
 	<ui:define name="title">Budget funding</ui:define>
 	
     <ui:define name="content">
-    	<p>
-    		This page should display the details for party number...
-        	<h:outputText value="#{politicsManagedBean.party.id}" />
-        </p>
         
         <p>Party name: <h:outputText value="#{politicsManagedBean.party.name}" /></p>
-        <p>Remaining budget: <h:outputText value="#{politicsManagedBean.party.remainingBudget}" /></p>
+        
+        <ui:fragment rendered="#{politicsManagedBean.canSeeBudget}">
+    		<p><b>Remaining budget:</b> <h:outputText value="#{politicsManagedBean.party.remainingBudget}" /></p>
+    	</ui:fragment>
+    	
+    	<h:form>
+    		<h:outputLabel value="Amount to withdraw" for="amountField" />
+    		<h:inputText id="amountField" valueChangeListener="#{politicsManagedBean.setAmount}" required="true" requiredMessage="Please enter a positive number superior to 0.">
+    			<f:validateLongRange minimum="1" />
+    		</h:inputText>
+    		
+    		<h:commandButton action="#{politicsManagedBean.withdrawFromBudget}" value="Submit" />
+    	</h:form>
 
     </ui:define>
 </ui:composition>
