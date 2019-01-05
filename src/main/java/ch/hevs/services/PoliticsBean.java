@@ -49,6 +49,25 @@ public class PoliticsBean implements Politics {
 		return (Party) query.getSingleResult();
 	}
 
+	public void updateEntity(Object entity)
+	{
+		entity = em.merge( entity );
+		em.flush();
+	}
+	
+	public void addEntity(Object entity)
+	{
+		em.persist( entity );
+		em.flush();
+	}
+	
+	public void removeEntity(Object entity)
+	{
+		em.merge( entity );
+		em.remove( entity );
+		// implicit em.flush();
+	}
+
 	@Override
 	public void removeParty(Party party)
 	{
@@ -65,6 +84,7 @@ public class PoliticsBean implements Politics {
 		List<Politician> pols = party.getPoliticians();
 		
 		// Hack to trigger lazy loading of politicians...
+		// (would be preferable to use entity graphs if we have time to do so)
 		pols.size();
 		
 		return pols;

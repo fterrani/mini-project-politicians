@@ -10,6 +10,7 @@ import ch.hevs.businessobject.Party;
 public interface BudgetFunding
 {
 	boolean canSeeBudget();
+	boolean canAccessBudgetForm();
 	boolean canWithdrawFromBudget(int amount);
 	void withdrawFromBudget(Party party, int amount) throws Exception;
 }

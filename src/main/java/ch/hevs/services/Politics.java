@@ -15,4 +15,8 @@ public interface Politics
 	Politician getPoliticianById( long id );
 	Party getPartyById( long id );
 	void removeParty(Party party);
+	
+	void updateEntity(Object entity);
+	void addEntity(Object entity);
+	void removeEntity(Object entity);
 }

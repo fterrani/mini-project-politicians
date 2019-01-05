@@ -7,17 +7,38 @@
     xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-	
-	<h1>Edit address</h1>
-	
+  
+  <ui:define name="title">Edit Address</ui:define>
+  
     <ui:define name="content">
-        <h:outputLabel value="Transfer result:"></h:outputLabel><h:outputLabel value=" #{transferBean.transactionResult}"></h:outputLabel>
-        <br></br>
-        <h:form>
-        <h:commandLink action="transferForm">
-         <h:outputText value="Make another transfer" />
-        </h:commandLink>
-        </h:form>
+    
+      <h:form>
+        <h:outputLabel value="Street:"/>
+        <h:inputText valueChangeListener="#{politicsManagedBean.setAddressStreet}" value="#{politicsManagedBean.politician.contactInfo.street}"/>
+        <br />
+        <h:outputLabel value="Postcode:"/>
+        <h:inputText valueChangeListener="#{politicsManagedBean.setAddressPostcode}" value="#{politicsManagedBean.politician.contactInfo.postcode}"/>
+        <br />
+        <h:outputLabel value="Locality:"/>
+        <h:inputText valueChangeListener="#{politicsManagedBean.setAddressLocality}" value="#{politicsManagedBean.politician.contactInfo.locality}"/>
+        <br />
+        <h:outputLabel value="Phone:"/>
+        <h:inputText valueChangeListener="#{politicsManagedBean.setAddressPhone}" value="#{politicsManagedBean.politician.contactInfo.phone}"/>
+        <br />
+        <h:outputLabel value="Email:"/>
+        <h:inputText valueChangeListener="#{politicsManagedBean.setAddressEmail}" value="#{politicsManagedBean.politician.contactInfo.email}"/>
+        <br />
+        <br />
+        <h:commandButton action="#{politicsManagedBean.saveAddress}" value="Save address" />
+        
+		<br />
+		<br />
+		<br />
+		<h:commandLink action="back">
+			<h:outputText value="Go back to #{party.name} details" />
+		</h:commandLink>
+      </h:form>
+      
     </ui:define>
 </ui:composition>
 </html>

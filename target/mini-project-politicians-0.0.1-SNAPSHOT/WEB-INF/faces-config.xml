@@ -43,6 +43,10 @@
 			<from-outcome>withdrawFromBudget</from-outcome>
 			<to-view-id>/budgetFunding.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>editAddress</from-outcome>
+			<to-view-id>/editAddress.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>

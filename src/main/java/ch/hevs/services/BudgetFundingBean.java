@@ -34,6 +34,15 @@ public class BudgetFundingBean implements BudgetFunding {
 		return canWithdraw;
 	}
 	
+	@Override
+	@TransactionAttribute(value=TransactionAttributeType.SUPPORTS)
+	public boolean canAccessBudgetForm()
+	{
+		boolean canAccessForm = (ctx.isCallerInRole("accountant") || ctx.isCallerInRole("secretary"));
+		
+		return canAccessForm;
+	}
+	
 	// À tester pour voir si erreur ou persistence ?
 	@TransactionAttribute(value=TransactionAttributeType.NEVER)
 	public void asdf()
@@ -54,6 +63,7 @@ public class BudgetFundingBean implements BudgetFunding {
 		
 		if ( party.getRemainingBudget() < 0 )
 			throw new Exception("Not enough money to withdraw! Wanted " + amount + " but only " + remainingBudget + " remaining.");
+			// Automatic rollback happens here!
 	}
 
 	@Override

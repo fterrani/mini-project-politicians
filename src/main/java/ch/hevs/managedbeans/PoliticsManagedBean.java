@@ -27,13 +27,15 @@ public class PoliticsManagedBean
     // Data for facelets
     private List<Party> parties = new ArrayList<Party>();
 	private List<Politician> politicians = new ArrayList<Politician>();
-	private List<Mandate> positions = new ArrayList<Mandate>();
-    private String budgetFundingResult;
-    private int budgetFundingAmount;
     private String message;
-    private Party party;
     
-    private ContactInfo address;
+    
+    private Party party;
+    private Politician politician;
+    
+    private boolean canAccessBudgetForm;
+    private boolean canSeeBudget;
+    private int amount;
     
     @PostConstruct
     public void initialize() throws NamingException
@@ -43,13 +45,13 @@ public class PoliticsManagedBean
     	populate = (Populate) ctx.lookup("java:global/mini-project-politicians-0.0.1-SNAPSHOT/PopulateBean!ch.hevs.services.Populate");
     	budgetFunding = (BudgetFunding) ctx.lookup("java:global/mini-project-politicians-0.0.1-SNAPSHOT/BudgetFundingBean!ch.hevs.services.BudgetFunding");
     	politics = (Politics) ctx.lookup("java:global/mini-project-politicians-0.0.1-SNAPSHOT/PoliticsBean!ch.hevs.services.Politics");
+    	
+    	setCanAccessBudgetForm(budgetFunding.canAccessBudgetForm());
+    	setCanSeeBudget(budgetFunding.canSeeBudget());
     }
     
     public List<Party> getParties()
     {
-    	//return parties;
-    	//List<Party> asdf = new ArrayList<Party>();
-    	//asdf.add( new Party("UDC", 23, 50000, new ContactInfo("udc street", "1234", "udc locality", "012 345 67 89", "info@udc.ch")) );
     	return parties;
     }
     
@@ -79,6 +81,11 @@ public class PoliticsManagedBean
 	{
 		this.message = message;
 	}
+	
+	private void resetMessage()
+	{
+		message = "";
+	}
 
 	public Party getParty()
 	{
@@ -89,12 +96,21 @@ public class PoliticsManagedBean
 	{
 		this.party = party;
 	}
+
+	public Politician getPolitician()
+	{
+		return politician;
+	}
+	
+	public void setPolitician( Politician politician )
+	{
+		this.politician = politician;
+	}
 	
 	public String seePartyDetails()
 	{
 		politicians = politics.getPartyPoliticians(party);
 		
-		System.out.println( ">>>>>>>>>>>>>>>>>>>>>>>>> " + politicians.get(0).getMandates().size() );
 		return "showPartyDetails";
 	}
 
@@ -108,13 +124,68 @@ public class PoliticsManagedBean
 		this.politicians = politicians;
 	}
 
-	public ContactInfo getAddress()
+	public void setAddressStreet(ValueChangeEvent event)
 	{
-		return address;
+		politician.getContactInfo().setStreet( (String) event.getNewValue() );
 	}
 
-	public void setAddress(ContactInfo address)
+	public void setAddressLocality(ValueChangeEvent event)
 	{
-		this.address = address;
+		politician.getContactInfo().setLocality( (String) event.getNewValue() );
+	}
+
+	public void setAddressPostcode(ValueChangeEvent event)
+	{
+		politician.getContactInfo().setPostcode( (String) event.getNewValue() );
+	}
+	
+	public void setAddressPhone(ValueChangeEvent event)
+	{
+		politician.getContactInfo().setPhone( (String) event.getNewValue() );
+	}
+	
+	public void setAddressEmail(ValueChangeEvent event)
+	{
+		politician.getContactInfo().setEmail( (String) event.getNewValue() );
+	}
+	
+	public String saveAddress()
+	{
+		politics.updateEntity( politician );
+		
+		return "editAddress";
+	}
+	
+	public String withdrawFromBudget()
+	{
+		try
+		{
+			budgetFunding.withdrawFromBudget(party, amount);
+			return "withdrawBudgetSuccess";
+		}
+		catch (Exception e)
+		{
+			return "withdrawBudgetFailure";
+		}
+	}
+
+	public boolean getCanSeeBudget()
+	{
+		return canSeeBudget;
+	}
+
+	public void setCanSeeBudget(boolean canSeeBudget)
+	{
+		this.canSeeBudget = canSeeBudget;
+	}
+
+	public boolean getCanAccessBudgetForm()
+	{
+		return canAccessBudgetForm;
+	}
+
+	public void setCanAccessBudgetForm(boolean canAccessBudgetForm)
+	{
+		this.canAccessBudgetForm = canAccessBudgetForm;
 	}
 }

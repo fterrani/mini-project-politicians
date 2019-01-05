@@ -44,6 +44,12 @@
         		<br />#{politician.contactInfo.postcode} #{politician.contactInfo.locality}
         		<br />#{politician.contactInfo.email}
 				<br />#{politician.contactInfo.phone}
+				
+				<h:form>
+					<h:commandButton action="editAddress" value="Edit address">
+						<f:setPropertyActionListener target="#{politicsManagedBean.politician}" value="#{politician}" />
+					</h:commandButton>
+				</h:form>
         	</h:column>
 		</h:dataTable>
     </ui:define>

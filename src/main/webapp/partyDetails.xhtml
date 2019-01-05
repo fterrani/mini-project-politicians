@@ -13,13 +13,27 @@
 	
     <ui:define name="content">
 	
-	    <h:form>
-			<h:commandLink action="withdrawFromBudget">
-				<h:outputText value="Withdraw from the budget" />
-			</h:commandLink>
-	    </h:form>
+	    
     	
     	<h1><h:outputText value="#{politicsManagedBean.party.name}" /></h1>
+    	
+    	<p><b>Total politicians:</b> <h:outputText value="#{politicsManagedBean.party.totalPoliticians}" /></p>
+    	
+    	<ui:fragment rendered="#{politicsManagedBean.canSeeBudget}">
+    		<p><b>Remaining budget:</b> <h:outputText value="#{politicsManagedBean.party.totalMembers}" /></p>
+    	</ui:fragment>
+    	
+    	
+    	<ui:fragment rendered="#{politicsManagedBean.canAccessBudgetForm}">
+	    	<h:form>
+				<h:commandLink action="withdrawFromBudget">
+					<h:outputText value="Withdraw from the budget" />
+				</h:commandLink>
+		    </h:form>
+	    </ui:fragment>
+    	
+    	
+    	<h2>Member list</h2>
     	
     	<h:dataTable value="#{politicsManagedBean.politicians}" var="politician">
         	<h:column>
