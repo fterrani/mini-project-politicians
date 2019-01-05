@@ -57,6 +57,19 @@ public class PoliticsBean implements Politics {
 		// implicit em.flush();
 	}
 
+	@Override
+	public List<Politician> getPartyPoliticians(Party party)
+	{
+		party = em.merge( party );
+		
+		List<Politician> pols = party.getPoliticians();
+		
+		// Hack to trigger lazy loading of politicians...
+		pols.size();
+		
+		return pols;
+	}
+
 
 	/*public Account getAccount(String accountDescription, String lastnameOwner) {
 		Query query = em.createQuery("FROM Account a WHERE a.description=:description AND a.owner.lastname=:lastname");

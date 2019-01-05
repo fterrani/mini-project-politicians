@@ -19,22 +19,21 @@ import ch.hevs.services.Populate;
 
 public class PoliticsManagedBean
 {
-	private List<Party> parties = new ArrayList<Party>();
-	private List<Politician> politicians = new ArrayList<Politician>();
-	private List<Mandate> positions = new ArrayList<Mandate>();
-	
-	
-	
-    private String budgetFundingResult;
-    private int budgetFundingAmount;
-    
-    // EJBs
+    // EJB beans
     private Populate populate;
     private BudgetFunding budgetFunding;
     private Politics politics;
     
+    // Data for facelets
+    private List<Party> parties = new ArrayList<Party>();
+	private List<Politician> politicians = new ArrayList<Politician>();
+	private List<Mandate> positions = new ArrayList<Mandate>();
+    private String budgetFundingResult;
+    private int budgetFundingAmount;
     private String message;
     private Party party;
+    
+    private ContactInfo address;
     
     @PostConstruct
     public void initialize() throws NamingException
@@ -62,13 +61,13 @@ public class PoliticsManagedBean
 	    	parties = politics.getParties();
 	    	
 	    	message = "The database was successfully populated! :)";
+	    	return "populateSuccess";
     	}
     	catch( Exception e)
     	{
     		message = "A problem occured while populating the database... :(";
+    		return "populateFailure";
     	}
-    	
-    	return "dbPopulated";
     }
 
 	public String getMessage()
@@ -93,30 +92,29 @@ public class PoliticsManagedBean
 	
 	public String seePartyDetails()
 	{
-		party = politics.getPartyById( party.getId() );
+		politicians = politics.getPartyPoliticians(party);
+		
+		System.out.println( ">>>>>>>>>>>>>>>>>>>>>>>>> " + politicians.get(0).getMandates().size() );
 		return "showPartyDetails";
 	}
-    
-    /*public String performTransfer() {
-    	
-    	try {
-			if (sourceClientName.equals(destinationClientName) && sourceAccountDescription.equals(destinationAccountDescription)) {
-				
-				this.transactionResult="Error: accounts are identical!";
-			} 
-			else {
-				
-				Account compteSrc = bank.getAccount(sourceAccountDescription, sourceClientName);
-				Account compteDest = bank.getAccount(destinationAccountDescription, destinationClientName);
-	
-				// Transfer
-				bank.transfer(compteSrc, compteDest, transactionAmount);
-				this.transactionResult="Success!";
-			}
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
 
-		return "showTransferResult"; //  the String value returned represents the outcome used by the navigation handler to determine what page to display next.
-	} */
+	public List<Politician> getPoliticians()
+	{
+		return politicians;
+	}
+
+	public void setPoliticians(List<Politician> politicians)
+	{
+		this.politicians = politicians;
+	}
+
+	public ContactInfo getAddress()
+	{
+		return address;
+	}
+
+	public void setAddress(ContactInfo address)
+	{
+		this.address = address;
+	}
 }

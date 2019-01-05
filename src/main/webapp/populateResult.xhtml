@@ -7,11 +7,11 @@ xmlns="http://www.w3.org/1999/xhtml"
 	<ui:define name="title">DB population</ui:define>
 	
     <ui:define name="content">
-        <p>DB population is over.</p>
-        <p><b>Message:</b>"<h:outputText value="#{politicsManagedBean.message}"/>"</p>
+        <p>DB population was attempted.</p>
+        <p><b>Result:</b> <h:outputText value="#{politicsManagedBean.message}"/></p>
         <br />
         <h:form>
-	        <h:commandLink action="listParties">
+	        <h:commandLink action="home">
 	         <h:outputText value="Go back to start" />
 	        </h:commandLink>
         </h:form>

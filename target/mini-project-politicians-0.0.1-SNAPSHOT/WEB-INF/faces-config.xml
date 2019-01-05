@@ -19,17 +19,20 @@
 			<to-view-id>/partyDetails.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>dbPopulated</from-outcome>
+			<from-outcome>populateSuccess</from-outcome>
+			<to-view-id>/populateResult.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>populateFailure</from-outcome>
 			<to-view-id>/populateResult.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>
-		<display-name>partyDetails.xhtml</display-name>
-		<from-view-id>/partyDetails.xhtml</from-view-id>
+		<from-view-id>/*</from-view-id>
 		<navigation-case>
-			<from-outcome>editAddress</from-outcome>
-			<to-view-id>/editAddress.xhtml</to-view-id>
+			<from-outcome>home</from-outcome>
+			<to-view-id>/listParties.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	

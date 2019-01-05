@@ -11,6 +11,7 @@ import ch.hevs.businessobject.Politician;
 public interface Politics
 {
 	List<Party> getParties();
+	List<Politician> getPartyPoliticians(Party party);
 	Politician getPoliticianById( long id );
 	Party getPartyById( long id );
 	void removeParty(Party party);

@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	
@@ -20,28 +21,35 @@
     	
     	<h1><h:outputText value="#{politicsManagedBean.party.name}" /></h1>
     	
-    	<h:dataTable value="#{politicsManagedBean.party.politicians}" var="politician">
+    	<h:dataTable value="#{politicsManagedBean.politicians}" var="politician">
         	<h:column>
         		<f:facet name="header">First name</f:facet>
-        		#{politician.firstname}
+        		#{politician.firstName}
         	</h:column>
         	<h:column>
         		<f:facet name="header">Last name</f:facet>
-        		#{politician.lastname}
+        		#{politician.lastName}
         	</h:column>
         	<h:column>
         		<f:facet name="header">Mandates</f:facet>
-        		<ui:repeat var="#{politician.mandates}" value="mandate" varStatus="loop">
-        			#{mandate.name}
-        			<h:outputText rendered="#{!loop.last}">, </h:outputText>
+        		
+        		<ui:repeat  var="mandate" value="#{politician.mandates}" varStatus="loop">
+        			#{mandate.name}<ui:fragment rendered="#{!loop.last}">,<br/></ui:fragment>
         		</ui:repeat>
+        		
         	</h:column>
         	<h:column>
         		<f:facet name="header">Address</f:facet>
-        		#{politician.contactinfo.street}
-        		<br />#{politician.contactinfo.postcode} #{politician.contactinfo.locality}
-        		<br />#{politician.contactinfo.email}
-				<br />#{politician.contactinfo.phone}
+        		#{politician.contactInfo.street}
+        		<br />#{politician.contactInfo.postcode} #{politician.contactInfo.locality}
+        		<br />#{politician.contactInfo.email}
+				<br />#{politician.contactInfo.phone}
+				
+				<h:form>
+					<h:commandButton action="editAddress" value="Edit address">
+						<f:setPropertyActionListener target="#{politicsManagedBean.politician}" value="#{politician}" />
+					</h:commandButton>
+				</h:form>
         	</h:column>
 		</h:dataTable>
     </ui:define>
