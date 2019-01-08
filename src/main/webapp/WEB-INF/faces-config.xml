@@ -73,6 +73,23 @@
 			<from-outcome>withdrawBudgetFailure</from-outcome>
 			<to-view-id>/budgetFundingResult.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>backToParty</from-outcome>
+			<to-view-id>/partyDetails.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>budgetFundingResult.xhtml</display-name>
+		<from-view-id>/budgetFundingResult.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>backToParty</from-outcome>
+			<to-view-id>/partyDetails.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>newWithdrawal</from-outcome>
+			<to-view-id>/budgetFunding.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	
 </faces-config>

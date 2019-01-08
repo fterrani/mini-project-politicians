@@ -11,11 +11,15 @@
 	<ui:define name="title">Budget funding result</ui:define>
 	
     <ui:define name="content">
-        <h:outputLabel value="Transfer result:"></h:outputLabel><h:outputLabel value=" #{transferBean.transactionResult}"></h:outputLabel>
-        <br></br>
+        <h:outputLabel value="Transfer result:"></h:outputLabel><h:outputLabel value=" #{politicsManagedBean.message}"></h:outputLabel>
+        <br/>
         <h:form>
-        <h:commandLink action="transferForm">
-         <h:outputText value="Make another transfer" />
+        <h:commandLink action="backToParty">
+        	<h:outputText value="Back to the party's information" />
+        </h:commandLink>
+        <br/>
+        <h:commandLink action="newWithdrawal">
+        	<h:outputText value="Make another withdrawal" />
         </h:commandLink>
         </h:form>
     </ui:define>

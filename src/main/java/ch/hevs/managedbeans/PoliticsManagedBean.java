@@ -163,19 +163,33 @@ public class PoliticsManagedBean
 	
 	public String withdrawFromBudget()
 	{
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> amount: " + amount );
-		
+
 		try
 		{
-			budgetFunding.withdrawFromBudget(party, amount);
-			message = amount + " CHF were withdrawn from " + party.getName() + "'s budget.";
-			
-			// TODO Refresh Party entity?
+			if(budgetFunding.canWithdrawFromBudget(amount))
+			{
+				party = budgetFunding.withdrawFromBudget(party, amount);
+				//Refresh the party in the list of parties
+				for(Party p : parties)
+				{
+					if(p.getId() == party.getId())
+					{
+						int i = parties.indexOf(p);
+						parties.set(i, party);
+					}
+				}
+				message = amount + " CHF were withdrawn from " + party.getName() + "'s budget.";
+			}
+			else
+			{
+				message = "You can only withdraw up to 50 CHF";
+			}
 			
 			return "withdrawBudgetSuccess";
 		}
 		catch (Exception e)
 		{
+			message = "There was an error when withdrawing from the party's funds: " + e.getMessage();
 			return "withdrawBudgetFailure";
 		}
 	}
@@ -213,8 +227,6 @@ public class PoliticsManagedBean
 	public void setAmount(ValueChangeEvent event)
 	{
 		Object value = event.getNewValue();
-		
-		System.out.println( ">>>>>>> value for amount: " + value );
 		
 		try
 		{
