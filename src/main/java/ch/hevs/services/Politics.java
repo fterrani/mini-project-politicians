@@ -19,4 +19,6 @@ public interface Politics
 	void updateEntity(Object entity);
 	void addEntity(Object entity);
 	void removeEntity(Object entity);
+	
+	boolean canEditAddress();
 }

@@ -29,6 +29,15 @@
 			        </h:commandLink>
         		</h:form>
         	</h:column>
+        	<h:column>
+        		<f:facet name="header">Actions</f:facet>
+        		<h:form>
+			        <h:commandLink action="#{politicsManagedBean.deleteParty}">
+			        	<h:outputText value="Delete this party" />
+			        	<f:setPropertyActionListener target="#{politicsManagedBean.party}" value="#{party}" />
+			        </h:commandLink>
+        		</h:form>
+        	</h:column>
 		</h:dataTable>
 		
     </ui:define>

@@ -3,6 +3,7 @@ package ch.hevs.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
@@ -22,6 +23,18 @@ public class PoliticsBean implements Politics {
 	
 	@PersistenceContext(name = "politicsPU", type=PersistenceContextType.TRANSACTION)
 	private EntityManager em;
+	
+	@Resource 
+	private SessionContext ctx;
+	
+	@Override
+	@TransactionAttribute(value=TransactionAttributeType.SUPPORTS)
+	public boolean canEditAddress()
+	{
+		boolean canEditAddress = (ctx.isCallerInRole("secretary") );
+		
+		return canEditAddress;
+	}
 
 	@Override
 	public List<Party> getParties()

@@ -33,9 +33,10 @@ public class PoliticsManagedBean
     
     private Party party;
     private Politician politician;
-    
-    private boolean canAccessBudgetForm;
-    private boolean canSeeBudget;
+
+    private boolean canEditAddress = false;
+    private boolean canAccessBudgetForm = false;
+    private boolean canSeeBudget = false;
     private int amount;
     
 
@@ -53,6 +54,7 @@ public class PoliticsManagedBean
     	
     	setCanAccessBudgetForm(budgetFunding.canAccessBudgetForm());
     	setCanSeeBudget(budgetFunding.canSeeBudget());
+    	setCanEditAddress(politics.canEditAddress());
     }
     
     public List<Party> getParties()
@@ -74,6 +76,21 @@ public class PoliticsManagedBean
     	{
     		message = "A problem occured while populating the database... :(";
     		return "populateFailure";
+    	}
+    }
+    
+    public String deleteParty()
+    {
+    	try
+    	{
+	    	politics.removeParty(party);
+	    	parties = politics.getParties();
+	    	
+	    	return "deletePartySuccess";
+    	}
+    	catch( Exception e)
+    	{
+    		return "deletePartyFailure";
     	}
     }
 
@@ -234,5 +251,15 @@ public class PoliticsManagedBean
 		}
 		catch(Exception e)
 		{}
+	}
+
+	public boolean getCanEditAddress()
+	{
+		return canEditAddress;
+	}
+
+	public void setCanEditAddress(boolean canEditAddress)
+	{
+		this.canEditAddress = canEditAddress;
 	}
 }

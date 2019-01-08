@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14141592409490" configfile="/mini-project-politicians/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="listParties.xhtml" x="554" y="369" id="pf15446048601170" referenceLink="//@navigationRule.4/@navigationCase.2/@toViewId|" outlinks="pf15446048601171 pf15465304218624 pf15466781484941" inlinks="pf15466782802014 pf15467020171449" path="/listParties.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="partyDetails.xhtml" x="338" y="562" id="pf15446048601182" referenceLink="//@navigationRule.5/@navigationCase.1/@toViewId|" outlinks="pf15466781484943 pf15466840943116 pf15467020171449" inlinks="pf15446048601171 pf15466970322168 pf15469578012920 pf15469580358442" path="/partyDetails.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listParties.xhtml" x="554" y="369" id="pf15446048601170" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" outlinks="pf15446048601171 pf15465304218624 pf15466781484941 pf15469722858060 pf15469722858061" inlinks="pf15466782802014 pf15467020171449 pf15469722858060 pf15469722858061" path="/listParties.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="partyDetails.xhtml" x="338" y="562" id="pf15446048601182" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf15466781484943 pf15466840943116 pf15467020171449" inlinks="pf15446048601171 pf15466970322168 pf15469578012920 pf15469580358442" path="/partyDetails.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="budgetFundingResult.xhtml" x="770" y="753" id="pf15446048601184" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf15469580358442 pf15469587682093" inlinks="pf15465091690511 pf15469578012931" path="/budgetFundingResult.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="budgetFunding.xhtml" x="554" y="753" id="pf15446048601185" referenceLink="//@navigationRule.5/@navigationCase.1/@toViewId|" outlinks="pf15465091690511 pf15469578012931 pf15469578012920" inlinks="pf15466781484943 pf15469587682093" path="/budgetFunding.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="populateResult.xhtml" x="770" y="369" id="pf15465304218625" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf15465304218624 pf15466781484941" path="/populateResult.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="populateResult.xhtml" x="770" y="369" id="pf15465304218625" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" inlinks="pf15465304218624 pf15466781484941" path="/populateResult.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="populateResult.xhtml" x="338" y="178" id="pf15466782802015" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15466782802014" path="/*"/>
   <nodes xsi:type="pageflow:PFPage" name="editAddress.xhtml" x="122" y="562" id="pf15466840943117" referenceLink="//@navigationRule.3/@navigationCase.1/@toViewId|" outlinks="pf15466970322168" inlinks="pf15466840943116" path="/editAddress.xhtml"/>
   <links id="pf15446048601171" target="pf15446048601182" source="pf15446048601170" outcome="showPartyDetails"/>
@@ -26,4 +26,6 @@
   <links id="pf15469578012920" target="pf15446048601182" source="pf15446048601185" outcome="backToParty"/>
   <links id="pf15469580358442" target="pf15446048601182" source="pf15446048601184" outcome="backToParty"/>
   <links id="pf15469587682093" target="pf15446048601185" source="pf15446048601184" outcome="newWithdrawal"/>
+  <links id="pf15469722858060" target="pf15446048601170" source="pf15446048601170" outcome="deletePartySuccess"/>
+  <links id="pf15469722858061" target="pf15446048601170" source="pf15446048601170" outcome="deletePartyFailure"/>
 </pageflow:Pageflow>

@@ -59,7 +59,7 @@
         		<br />#{politician.contactInfo.email}
 				<br />#{politician.contactInfo.phone}
 				
-				<h:form>
+				<h:form rendered="#{politicsManagedBean.canEditAddress}">
 					<h:commandButton action="editAddress" value="Edit address">
 						<f:setPropertyActionListener target="#{politicsManagedBean.politician}" value="#{politician}" />
 					</h:commandButton>

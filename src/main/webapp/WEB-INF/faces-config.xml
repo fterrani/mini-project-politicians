@@ -26,6 +26,14 @@
 			<from-outcome>populateFailure</from-outcome>
 			<to-view-id>/populateResult.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>deletePartySuccess</from-outcome>
+			<to-view-id>/listParties.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>deletePartyFailure</from-outcome>
+			<to-view-id>/listParties.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>
