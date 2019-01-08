@@ -90,31 +90,4 @@ public class PoliticsBean implements Politics {
 		return pols;
 	}
 
-
-	/*public Account getAccount(String accountDescription, String lastnameOwner) {
-		Query query = em.createQuery("FROM Account a WHERE a.description=:description AND a.owner.lastname=:lastname");
-		query.setParameter("description", accountDescription);
-		query.setParameter("lastname", lastnameOwner);
-		
-		return (Account) query.getSingleResult();
-	}
-	
-	/public List<Account> getAccountListFromClientLastname(String lastname) {
-		return (List<Account>) em.createQuery("SELECT c.accounts FROM Client c where c.lastname=:lastname").setParameter("lastname", lastname).getResultList();
-	}
-
-	public void transfer(Account srcAccount, Account destAccount, int amount) {
-		
-		 ORIGINAL CODE
-		em.persist(srcAccount);
-		em.persist(destAccount);
-		
-		srcAccount.debit(amount);
-		destAccount.credit(amount);
-	}
-	
-	public Client getClient(long clientid) {
-		return (Client) em.createQuery("FROM Client c where c.id=:id").setParameter("id", clientid).getSingleResult();
-	}
-	*/
 }

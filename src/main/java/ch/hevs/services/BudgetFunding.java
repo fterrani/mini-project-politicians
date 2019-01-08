@@ -12,5 +12,5 @@ public interface BudgetFunding
 	boolean canSeeBudget();
 	boolean canAccessBudgetForm();
 	boolean canWithdrawFromBudget(int amount);
-	void withdrawFromBudget(Party party, int amount) throws Exception;
+	Party withdrawFromBudget(long partyId, int amount) throws Exception;
 }
