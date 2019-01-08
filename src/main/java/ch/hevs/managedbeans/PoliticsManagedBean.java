@@ -168,7 +168,7 @@ public class PoliticsManagedBean
 		{
 			if(budgetFunding.canWithdrawFromBudget(amount))
 			{
-				party = budgetFunding.withdrawFromBudget(party, amount);
+				party = budgetFunding.withdrawFromBudget(party.getId(), amount);
 				//Refresh the party in the list of parties
 				for(Party p : parties)
 				{

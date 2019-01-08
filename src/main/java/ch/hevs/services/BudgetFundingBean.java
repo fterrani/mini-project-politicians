@@ -48,12 +48,12 @@ public class BudgetFundingBean implements BudgetFunding {
 
 	@Override
 	@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
-	public Party withdrawFromBudget(Party party, int amount) throws Exception
+	public Party withdrawFromBudget(long partyId, int amount) throws Exception
 	{
 		if ( amount <= 0 )
 			throw new RollbackException("Amount was inferior or equal to 0. Positive value required!");
 		
-		party = em.merge(party);
+		Party party = em.find(Party.class, partyId);
 		
 		int remainingBudget = party.getRemainingBudget();
 
